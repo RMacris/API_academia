@@ -1,0 +1,44 @@
+
+
+export default {
+    /*  Future Integration
+    // USUARIOS_SCHEMA: `
+    // CREATE TABLE IF NOT EXISTS "PESSOA" (
+    //     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+    //     "NOME" varchar(64) NOT NULL,
+    //     "EMAIL" varchar(64) NOT NULL,
+    //     "TELEFONE" varchar(13) NOT NULL,
+    //     "RG" varchar(8) UNIQUE,
+    //     "CPF" varchar(11) UNIQUE NOT NULL
+
+    // );`,
+    // TAREFAS_SCHEMA: `
+    // CREATE TABLE IF NOT EXISTS "TAREFAS" (
+    //     ID INTEGER PRIMARY KEY AUTOINCREMENT, 
+    //     TITULO VARCHAR(64),
+    //     DESCRICAO TEXT,
+    //     STATUS VARCHAR(32),
+    //     DATACRIACAO VARCHAR(32),
+    //     ID_USUARIO INTEGER,
+    //     FOREIGN KEY(ID_USUARIO) REFERENCES USUARIOD(ID)
+    // );`,
+    */
+    AVALIACAO_SCHEMA: `CREATE TABLE IF NOT EXISTS "AVALIACAO" (
+        ID INTEGER RPIMARY KEY AUTO_INCREMENT,
+        ALTURA INTEGER(3),
+        PESO DECIMAL(3,2),
+        MASSA_MUSCULAR DECIMAL(3,2),
+        TRICIPTAL DECIMAL(3,2),
+        PEITORAL VARCHAR(3,2),
+        CINTURA VARCHAR(3,2),
+        QUADRIL VARCHAR(3,2),
+        BRACO_E VARCHAR(3,2),
+        BRACO_D VARCHAR(3,2),
+        PERNA_E VARCHAR(3,2),
+        PERNA_D VARCHAR(3,2),
+        PANTURRILHA_E VARCHAR(3,2),
+        PANTURRILHA_D VARCHAR(3,2),
+        ABDOMEM VARCHAR(3,2),
+        GLUTEO VARCHAR(3,2)
+    );`,
+}
