@@ -1,4 +1,4 @@
-import aval from "../database/Queries/Avaliacao"
+import aval from "../database/Queries/Avaliacao/index.js"
 import { AvaliacaoModel } from '../MVC/model/AvaliacaoModel.js'
 
 export class AvaliacaoDAO {
@@ -9,7 +9,7 @@ export class AvaliacaoDAO {
     InsertAvaliacao(data = {}){
         const {$id, ...newData} = new AvaliacaoModel(data)
         data = new AvaliacaoModel(data)
-        let currentData = ($id == null) ? newData : data
+        let currentData = newData
         return this._SetterHelper(() => aval.INSERT_AVALIACAO(currentData), currentData)
     }
 
@@ -29,12 +29,12 @@ export class AvaliacaoDAO {
        return this._GetterHelper(() => aval.GET_AVALIACAO, {$id:id})
     }
     GetAll() { 
-        return this._GetterHelper(() => aval.GET_AVALIACAO, {})
+        return this._GetterHelper(() => aval.GET_ALL, {})
     }
-   async GetLast() {
+    async GetLast() {
         const res = await this._GetterHelper(() => aval.GET_LAST,{})
         if(res.data.length > 0 && res.data[0].hasOwnProperty('id')) return this._ResponseDefault([res.data[0]],res.error)
-        return this._ResponseDefault([{}],res.error)
+        return this._ResponseDefault([],res.error)
     }
     
     _SetterHelper(callbackQuery, data={}) {
@@ -47,7 +47,7 @@ export class AvaliacaoDAO {
                     resolve(this._ResponseDefault(modified.data,error))
                 })
             } catch (error) {
-                reject(this._ResponseDefault([{}], error))
+                reject(this._ResponseDefault([], error))
             }
         })
     }
@@ -55,16 +55,17 @@ export class AvaliacaoDAO {
         return new Promise((resolve,reject)=> { 
             try {
                 this.db.all(callbackQuery(), data , (error, row) => { 
+                    if(error) throw new Error(error)
                     resolve(this._ResponseDefault(row, error))
                 })
             } catch (error) {
-                reject(this._ResponseDefault([{}], error))
+                reject(this._ResponseDefault([], error))
             }
         })
     }
     _ResponseDefault(data, error) {
         return { 
-            data: data || [{}],
+            data: data || [],
             error: error || null
         }
     }

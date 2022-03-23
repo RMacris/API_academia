@@ -1,4 +1,4 @@
-import { AvaliacaoBase } from "./AvalicaoBase"
+import { AvaliacaoBase } from "./AvalicaoBase.js"
 export class AvaliacaoModel extends AvaliacaoBase {
     
     constructor(avalInfo) {
