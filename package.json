@@ -25,7 +25,7 @@
   "homepage": "https://github.com/RMacris/API_academia#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",

@@ -1,12 +1,15 @@
 import express from 'express'
-import database from './database/sqlite-db.js'
+import { AvaliacaoController } from './MVC/controller/AvaliacaoController.js'
 const app = express()
 
 app.use(express.json())
 
+AvaliacaoController(app)
 
 app.use((req, res, next) =>  { 
 
 })
+
+AvaliacaoController(app)
 
 export default app

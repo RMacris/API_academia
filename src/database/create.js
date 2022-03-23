@@ -15,11 +15,9 @@ const db = new sqlite3.Database(filePath);
 
 
 
-console.log(Schema.default)
 export function CreateTable(table) {
     db.run(table, (error)=> {
         try {
-            console.log("Tabela  criada com sucesso \n", table );
             if (error) throw new Error(error)
         }catch(error) { 
             console.error("Erro ao criar tabela \n" + table, error);
@@ -32,7 +30,6 @@ export function CreateTable(table) {
 db.serialize( ()=> {
 
     let keys = Object.keys(Schema.default)
-    console.log(keys)
     for(let key of keys){ 
         CreateTable(Schema.default[key])
     }
