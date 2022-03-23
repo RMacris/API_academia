@@ -1,4 +1,5 @@
 import { AvaliacaoDAO } from "../../DAO/AvaliacaoDAO"
+import AvaliacaoModel from "../model/AvaliacaoModel"
 export const AvaliacaoController = (app) => {
 
     app.get('/fornecedores', (req,res) => { 

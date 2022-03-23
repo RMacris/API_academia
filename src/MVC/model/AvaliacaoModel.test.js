@@ -1,5 +1,5 @@
 import express from "express";
-import AvaliacaoModel from "./AvaliacaoModel.js";
+import {AvaliacaoModel} from "./AvaliacaoModel.js";
 
 
 const aval = new AvaliacaoModel()
@@ -30,22 +30,22 @@ test('it should not process string values and return 0.00',() => {
 
 test("it should create an Avaliacao Object with that feed data", () => {
     const data = { 
-        $altura         : 183.32, 
-        $peso           : 80.32, 
-        $massaMuscular  : 24.0401230,
-        $taxaGordura    : 18.0556,
-        $tricipal       : 9.3,
-        $peitoral       : 10.23,
-        $cintura        : 32.8546,
-        $quadril        : 50.654,
-        $bracoE         : 60.645,
-        $bracoD         : 70.6234,
-        $pernaE         : 67.023423623467234356,
-        $pernaD         : 84.345,
-        $panturrilhaE   : 63.4325,
-        $panturrilhaD   : 43.0,
-        $abdomem        : 23.0,
-        $gluteo         : 0.0
+        altura         : 183.32, 
+        peso           : 80.32, 
+        massaMuscular  : 24.0401230,
+        taxaGordura    : 18.0556,
+        tricipal       : 9.3,
+        peitoral       : 10.23,
+        cintura        : 32.8546,
+        quadril        : 50.654,
+        bracoE         : 60.645,
+        bracoD         : 70.6234,
+        pernaE         : 67.023423623467234356,
+        pernaD         : 84.345,
+        panturrilhaE   : 63.4325,
+        panturrilhaD   : 43.0,
+        abdomem        : 23.0,
+        gluteo         : 0.0
     }
     const checker = { 
         $altura         : 183.32, 

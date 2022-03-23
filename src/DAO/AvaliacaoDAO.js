@@ -1,5 +1,5 @@
 import aval from "../database/Queries/Avaliacao"
-import AvaliacaoModel from '../MVC/model/AvaliacaoModel.js'
+import { AvaliacaoModel } from '../MVC/model/AvaliacaoModel.js'
 
 export class AvaliacaoDAO {
     constructor(db){
@@ -7,15 +7,18 @@ export class AvaliacaoDAO {
     }
 
     InsertAvaliacao(data = {}){
-        const {$id, ...newData} = data
+        const {$id, ...newData} = new AvaliacaoModel(data)
+        data = new AvaliacaoModel(data)
         let currentData = ($id == null) ? newData : data
         return this._SetterHelper(() => aval.INSERT_AVALIACAO(currentData), currentData)
     }
 
-    UpdateAvaliacao(data = {}){
-        const {$id, ...newData} = data
-        let currentData = ($id == null) ? newData : data
-        return this._SetterHelper(() => aval.UPDATE_AVALIACAO_BY_ID(currentData), currentData)
+    async UpdateAvaliacao(data = {}){
+        const currentData = await this.GetAvaliacao(data.id)
+        const targetData = Object.assign(currentData.data[0],data)
+        const dataModel = new AvaliacaoModel(targetData)
+        const finalModel = {...dataModel}
+        return await this._SetterHelper(() => aval.UPDATE_AVALIACAO_BY_ID(finalModel), finalModel)
         
     }
     DeleteAvaliacao(id){
