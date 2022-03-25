@@ -114,12 +114,12 @@ O Rota Delete Recebe apenas o id do campo a ser deletado, e retorna uma lista va
 ```
 
 
-## Authors
+## Autores
 
 - [RMacris](https://github.com/RMacris/API_academia)
 
 
-## Acknowledgements
+## Agradecimentos
 
     Agredicmentos a comunidade Resilia pela orientação e contribuição no processo de 
     aprendizagem de desolvimento, desta API.

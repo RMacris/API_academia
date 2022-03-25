@@ -3,7 +3,7 @@ export const AvaliacaoController = (app,database) => {
     const avalDAO = new AvaliacaoDAO(database)
 
     //get all
-    app.get('/', async (req,res) => { 
+    app.get('/avaliacao', async (req,res) => { 
         try {
             const allData = await avalDAO.GetAll()
             res.status(200)
