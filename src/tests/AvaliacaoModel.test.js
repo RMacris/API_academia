@@ -1,7 +1,5 @@
-import { AvaliacaoDAO } from './AvaliacaoDAO'
 import db from '../database/sqlite-db'
 import { AvaliacaoModel } from '../MVC/model/AvaliacaoModel'
-
 
 const data = { 
     altura         : 183.32, 
@@ -41,7 +39,7 @@ const checker = {
    abdomem        : 23.00 ,
    gluteo         : 0.00
 }
-const avaliacao = new AvaliacaoDAO(db)
+const avaliacao = new AvaliacaoModel(db)
 const avalData = {...data}
 
 
@@ -66,7 +64,7 @@ test('expect to get Updated row ',async () => {
         peso: 4,
         id:1})
     const expectedRes = avaliacao._ResponseDefault([updated],null)
-    const result = await avaliacao.UpdateAvaliacao(updater)
+    const result = await avaliacao.UpdateAvaliacao(updater, updater.id)
     return expect(result).toMatchObject(expectedRes)
 })
 test('expect to delete the avaliacao with the especified id', async () => { 

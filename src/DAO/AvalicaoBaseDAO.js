@@ -1,4 +1,4 @@
-export class AvaliacaoBase{ 
+export class AvaliacaoBaseDAO{ 
     constructor(avalInfo = {
          id: null,
          altura: 0.0, 
@@ -18,7 +18,7 @@ export class AvaliacaoBase{
          abdomem: 0.0,
          gluteo: 0.0
     }) { 
-        this.$id          = this.formatID(avalInfo.id),
+        this.$id            = this.formatID(avalInfo.id),
         this.$altura        = this.format(avalInfo.altura),
         this.$peso          = this.format(avalInfo.peso),
         this.$massaMuscular = this.format(avalInfo.massaMuscular),
@@ -44,9 +44,9 @@ export class AvaliacaoBase{
         if(val < 0) return 0.00
         if(val > Number.MAX_SAFE_INTEGER) { 
             // console.warn('The number ' + val + ' exceeds the max safe value')
-            return 0.00
+            return 999.99
         }  
-        return parseFloat(val.toFixed(2))
+        return this.clamp(parseFloat(val.toFixed(2)), 0.00, 999.99)
     }
     formatID(val = 0){ 
         if(typeof val != `number`) return null
@@ -56,5 +56,9 @@ export class AvaliacaoBase{
             return null
         } 
         return parseInt(val)
+    }
+
+    clamp(value, min, max) { 
+        return Math.min(Math.max(value, min), max);
     }
 }

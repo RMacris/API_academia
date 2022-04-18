@@ -1,11 +1,11 @@
-import { AvaliacaoDAO } from "../../DAO/AvaliacaoDAO.js"
+import { AvaliacaoModel } from "../model/AvaliacaoModel.js"
 export const AvaliacaoController = (app,database) => {
-    const avalDAO = new AvaliacaoDAO(database)
+    const avalModel = new AvaliacaoModel(database)
 
     //get all
     app.get('/avaliacao', async (req,res) => { 
         try {
-            const allData = await avalDAO.GetAll()
+            const allData = await avalModel.GetAll()
             res.status(200)
             res.json(allData)
             
@@ -16,7 +16,7 @@ export const AvaliacaoController = (app,database) => {
     // insert new 
     app.post('/avaliacao', async (req,res) => { 
         try {
-            const insertedData = await avalDAO.InsertAvaliacao(req.body)
+            const insertedData = await avalModel.InsertAvaliacao(req.body)
             res.status(201)
             res.json(insertedData)
         } catch (error) {
@@ -27,7 +27,7 @@ export const AvaliacaoController = (app,database) => {
     app.get('/avaliacao/:id', async (req,res) => { 
         try {
             const id = req.params.id
-            const result = await avalDAO.GetAvaliacao(id)
+            const result = await avalModel.GetAvaliacao(id)
             res.status(200)
             res.json(result)
         } catch (error) {
@@ -37,10 +37,11 @@ export const AvaliacaoController = (app,database) => {
 
     })
     // update
-    app.put('/avaliacao', async (req,res) => { 
+    app.put('/avaliacao/:id', async (req,res) => { 
         try {
+            const id = req.params.id
             const object = req.body
-            const result = await avalDAO.UpdateAvaliacao(object)
+            const result = await avalModel.UpdateAvaliacao(object, id)
             res.status(200)
             res.json(result)
         } catch (error) {
@@ -49,10 +50,10 @@ export const AvaliacaoController = (app,database) => {
         }
     })
     // delete by id
-    app.delete('/avaliacao', async (req,res) => { 
+    app.delete('/avaliacao/:id', async (req,res) => { 
         try {
-            const id = req.body.id
-            const result = await avalDAO.DeleteAvaliacao(id)
+            const id = req.params.id
+            const result = await avalModel.DeleteAvaliacao(id)
             res.status(200)
             res.json(result)
         } catch (error) {

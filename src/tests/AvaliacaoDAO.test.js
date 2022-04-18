@@ -1,8 +1,7 @@
 import express from "express";
-import {AvaliacaoModel} from "./AvaliacaoModel.js";
+import { AvaliacaoDAO } from "../DAO/AvaliacaoDAO";
 
-
-const aval = new AvaliacaoModel()
+const aval = new AvaliacaoDAO()
 
 test("expected to properly format the number into valid sql DECIMAL(3,2)",() => { 
     expect(aval.format(-1)).toBe(0.00)
@@ -10,11 +9,11 @@ test("expected to properly format the number into valid sql DECIMAL(3,2)",() => 
     expect(aval.format(2.23)).toBe(2.23)
     expect(aval.format(0.04444)).toBe(0.04)
     expect(aval.format(-0.04444)).toBe(0.00)
-    expect(aval.format(232141512)).toBe(232141512.00)
+    expect(aval.format(232141512)).toBe(999.99)
 })
 
-test('it should return 0.00 for numbers bigger than Number.MAX_SAFE_INTEGER', () => { 
-    expect(aval.format(239018095172093890185123)).toBe(0.00)
+test('it should return 999.99 for numbers bigger than Number.MAX_SAFE_INTEGER', () => { 
+    expect(aval.format(239018095172093890185123)).toBe(999.99)
 })
 
 test('it should not process string values and return 0.00',() => { 
@@ -66,5 +65,5 @@ test("it should create an Avaliacao Object with that feed data", () => {
         $gluteo         : 0.00
     }
   
-    expect(new AvaliacaoModel(data)).toMatchObject(checker)
+    expect(new AvaliacaoDAO(data)).toMatchObject(checker)
 })
