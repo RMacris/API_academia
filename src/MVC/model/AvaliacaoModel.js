@@ -8,7 +8,6 @@ export class AvaliacaoModel {
 
     InsertAvaliacao(data = {}){
         const {$id, ...newData} = new AvaliacaoDAO(data)
-        data = new AvaliacaoDAO(data)
         const currentData = newData
         return this._SetterHelper(() => aval.INSERT_AVALIACAO(currentData), currentData)
     }
@@ -17,7 +16,7 @@ export class AvaliacaoModel {
         const currentData = await this.GetAvaliacao(id)
         const targetData = Object.assign(currentData.data[0],{...data})
         const dataModel = new AvaliacaoDAO(targetData)
-        const finalModel = {...dataModel}
+        const { $user_id, $createdAt, ...finalModel} =  {...dataModel}
         return await this._SetterHelper(() => aval.UPDATE_AVALIACAO_BY_ID(finalModel), finalModel)
         
     }

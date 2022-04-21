@@ -33,7 +33,7 @@ export default {
     GET_AVALIACAO: `SELECT * FROM avaliacao WHERE id=$id;`,
     UPDATE_AVALIACAO_BY_ID: function(data = {}){
         let query = `UPDATE avaliacao SET `
-        let {$id, ...newData} = data
+        let {$id, $createdAt, $user_id, ...newData} = data
         const keys = formatKeysToNames(newData)
         for(let index in keys){
             if(index < keys.length -1) {
@@ -43,6 +43,7 @@ export default {
             query += ` ${keys[index]} = $${keys[index]} `
         }
         query += `WHERE id=$id;`
+        console.log( query)
         return query
     },
     GET_LAST: `SELECT * FROM avaliacao ORDER BY id DESC LIMIT 1;`,

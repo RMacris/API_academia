@@ -1,3 +1,4 @@
+import moment from "moment"
 export class AvaliacaoBaseDAO{ 
     constructor(avalInfo = {
          id: null,
@@ -5,6 +6,7 @@ export class AvaliacaoBaseDAO{
          peso: 0.0, 
          massaMuscular: 0.0, 
          taxaGordura:0.0,
+         ombros: 0.0,
          tricipal: 0.0,
          peitoral: 0.0,
          cintura: 0.0,
@@ -16,13 +18,17 @@ export class AvaliacaoBaseDAO{
          panturrilhaE: 0.0,
          panturrilhaD: 0.0,
          abdomem: 0.0,
-         gluteo: 0.0
+         gluteo: 0.0,
+         user_id: 0,
+         createdAt: 0.0,
+         updatedAt: 0.0
     }) { 
         this.$id            = this.formatID(avalInfo.id),
         this.$altura        = this.format(avalInfo.altura),
         this.$peso          = this.format(avalInfo.peso),
         this.$massaMuscular = this.format(avalInfo.massaMuscular),
         this.$taxaGordura   = this.format(avalInfo.taxaGordura),
+        this.$ombros        = this.format(avalInfo.ombros),
         this.$tricipal      = this.format(avalInfo.tricipal),
         this.$peitoral      = this.format(avalInfo.peitoral),
         this.$cintura       = this.format(avalInfo.cintura),
@@ -34,7 +40,10 @@ export class AvaliacaoBaseDAO{
         this.$panturrilhaE  = this.format(avalInfo.panturrilhaE),
         this.$panturrilhaD  = this.format(avalInfo.panturrilhaD),
         this.$abdomem       = this.format(avalInfo.abdomem),
-        this.$gluteo        = this.format(avalInfo.gluteo)
+        this.$gluteo        = this.format(avalInfo.gluteo),
+        this.$user_id       = this.formatID(avalInfo.user_id)
+        this.$createdAt     = this.setCreatedTime(),
+        this.$updatedAt     = this.dateFormat(avalInfo.createdAt)
     }
     /*
     this function make sure to format the input into a valido sql decimal (2,3)
@@ -56,6 +65,12 @@ export class AvaliacaoBaseDAO{
             return null
         } 
         return parseInt(val)
+    }
+    setCreatedTime() {
+        return moment().format()
+    }
+    dateFormat(date) { 
+        return moment().format(date)
     }
 
     clamp(value, min, max) { 

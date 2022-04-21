@@ -28,6 +28,7 @@ export default {
         altura DECIMAL(3,2),
         peso DECIMAL(3,2),
         massaMuscular DECIMAL(3,2),
+        ombros DECIMAL(3,2),
         taxaGordura DECIMAL(3,2),
         tricipal DECIMAL(3,2),
         peitoral DECIMAL(3,2),
@@ -40,6 +41,9 @@ export default {
         panturrilhaE DECIMAL(3,2),
         panturrilhaD DECIMAL(3,2),
         abdomem DECIMAL(3,2),
-        gluteo DECIMAL(3,2)
+        gluteo DECIMAL(3,2),
+        user_id INTEGER,
+        createdAt TEXT,
+        updatedAt TEXT
     );`,
 }
