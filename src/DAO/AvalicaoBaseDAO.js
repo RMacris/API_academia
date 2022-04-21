@@ -42,8 +42,8 @@ export class AvaliacaoBaseDAO{
         this.$abdomem       = this.format(avalInfo.abdomem),
         this.$gluteo        = this.format(avalInfo.gluteo),
         this.$user_id       = this.formatID(avalInfo.user_id)
-        this.$createdAt     = this.setCreatedTime(),
-        this.$updatedAt     = this.dateFormat(avalInfo.createdAt)
+        this.$createdAt     = this.setTime(),
+        this.$updatedAt     = this.setTime()
     }
     /*
     this function make sure to format the input into a valido sql decimal (2,3)
@@ -66,11 +66,8 @@ export class AvaliacaoBaseDAO{
         } 
         return parseInt(val)
     }
-    setCreatedTime() {
+    setTime() {
         return moment().format()
-    }
-    dateFormat(date) { 
-        return moment().format(date)
     }
 
     clamp(value, min, max) { 

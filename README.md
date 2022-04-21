@@ -55,7 +55,10 @@ Esta Rota retorna o objeto com o `id` especificado, ou vazio, caso ele não exis
 **POST** - `/avaliacao` 
 
 Esta rota recebe o seguinte objeto JSON para a inserção de dados.
-Campos faltantes ou nulos, serão preenchidos com `0`.
+Campos de medidas faltantes ou nulos ou que não sejam validos, serão preenchidos com `0` ou
+delimitados entre um alance entre `0` a `999.99`.
+
+
 Esta Rota Retorna o objeto inserido.
 ```json
 	{
@@ -74,20 +77,23 @@ Esta Rota Retorna o objeto inserido.
         "panturrilhaE"   : 63.43 ,
         "panturrilhaD"   : 43.00 ,
         "abdomem"        : 23.00 ,
-        "gluteo"       	 : 50.00
+        "gluteo"       	 : 50.00,
+        "user_id"        : null,
+        "createdAt"      : "2022-04-21T13:41:05-03:00",
+        "updatedAt"      : "2022-04-21T13:46:57-03:00"
 	} 
 ``` 
 
-**PUT** - `/avaliacao`
+**PUT** - `/avaliacao/:id`
 
 Para realizar uma atualização em algum dado do banco de dados, basta enviar um objeto JSON
-contendo os campos a serem atualizados juntamente com seu `id`. Esta Rota retorna o objeto
-atualizado.
+contendo os campos a serem atualizados.
+Voce deve informar o `id` a ser atualizado como parametro de rota. 
+Esta Rota retorna o objeto atualizado.
 
 Exemplo 1:
 ```json
     {
-        "id"             : 1,
         "altura"         : 0.32, 
         "peso"           : 1.32 , 
         "massaMuscular"  : 2.04 ,
@@ -104,15 +110,9 @@ Exemplo 2:
 ```
 Este rota permite a passagem dinamica de chaves no objeto JSON para atualização.
 
-**DELETE** - `/avaliacao`
+**DELETE** - `/avaliacao/:id`
 
-O Rota Delete Recebe apenas o id do campo a ser deletado, e retorna uma lista vaiza
-```json
-    {
-        "id"             : 2,
-    }
-```
-
+O Rota Delete Recebe apenas o id como parametro de rota, e retorna uma lista vaiza
 
 ## Autores
 
@@ -121,5 +121,5 @@ O Rota Delete Recebe apenas o id do campo a ser deletado, e retorna uma lista va
 
 ## Agradecimentos
 
-    Agredicmentos a comunidade Resilia pela orientação e contribuição no processo de 
+    Agradecimentos a comunidade Resilia pela orientação e contribuição no processo de 
     aprendizagem de desolvimento, desta API.
