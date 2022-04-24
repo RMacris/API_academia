@@ -6,8 +6,10 @@ export class AvaliacaoBaseDAO{
          peso: 0.0, 
          massaMuscular: 0.0, 
          taxaGordura:0.0,
-         ombros: 0.0,
-         tricipal: 0.0,
+         ombrosE: 0.0,
+         ombrosD: 0.0,
+         tricipalE: 0.0,
+         tricipalD: 0.0, 
          peitoral: 0.0,
          cintura: 0.0,
          quadril: 0.0,
@@ -23,26 +25,28 @@ export class AvaliacaoBaseDAO{
          createdAt: 0.0,
          updatedAt: 0.0
     }) { 
-        this.$id            = this.formatID(avalInfo.id),
-        this.$altura        = this.format(avalInfo.altura),
-        this.$peso          = this.format(avalInfo.peso),
-        this.$massaMuscular = this.format(avalInfo.massaMuscular),
-        this.$taxaGordura   = this.format(avalInfo.taxaGordura),
-        this.$ombros        = this.format(avalInfo.ombros),
-        this.$tricipal      = this.format(avalInfo.tricipal),
-        this.$peitoral      = this.format(avalInfo.peitoral),
-        this.$cintura       = this.format(avalInfo.cintura),
-        this.$quadril       = this.format(avalInfo.quadril),
-        this.$bracoE        = this.format(avalInfo.bracoE),
-        this.$bracoD        = this.format(avalInfo.bracoD),
-        this.$pernaE        = this.format(avalInfo.pernaE),
-        this.$pernaD        = this.format(avalInfo.pernaD),
-        this.$panturrilhaE  = this.format(avalInfo.panturrilhaE),
-        this.$panturrilhaD  = this.format(avalInfo.panturrilhaD),
-        this.$abdomem       = this.format(avalInfo.abdomem),
-        this.$gluteo        = this.format(avalInfo.gluteo),
+        this.$id            = this.formatID(avalInfo.id)
+        this.$altura        = this.format(avalInfo.altura)
+        this.$peso          = this.format(avalInfo.peso)
+        this.$massaMuscular = this.format(avalInfo.massaMuscular)
+        this.$taxaGordura   = this.format(avalInfo.taxaGordura)
+        this.$ombrosE        = this.format(avalInfo.ombrosE)
+        this.$ombrosD        = this.format(avalInfo.ombrosD)
+        this.$tricipalE      = this.format(avalInfo.tricipalE)
+        this.$tricipalD      = this.format(avalInfo.tricipalD)
+        this.$peitoral      = this.format(avalInfo.peitoral)
+        this.$cintura       = this.format(avalInfo.cintura)
+        this.$quadril       = this.format(avalInfo.quadril)
+        this.$bracoE        = this.format(avalInfo.bracoE)
+        this.$bracoD        = this.format(avalInfo.bracoD)
+        this.$pernaE        = this.format(avalInfo.pernaE)
+        this.$pernaD        = this.format(avalInfo.pernaD)
+        this.$panturrilhaE  = this.format(avalInfo.panturrilhaE)
+        this.$panturrilhaD  = this.format(avalInfo.panturrilhaD)
+        this.$abdomem       = this.format(avalInfo.abdomem)
+        this.$gluteo        = this.format(avalInfo.gluteo)
         this.$user_id       = this.formatID(avalInfo.user_id)
-        this.$createdAt     = this.setTime(),
+        this.$createdAt     = this.setTime()
         this.$updatedAt     = this.setTime()
     }
     /*
