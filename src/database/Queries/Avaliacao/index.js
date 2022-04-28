@@ -43,10 +43,20 @@ export default {
             query += ` ${keys[index]} = $${keys[index]} `
         }
         query += `WHERE id=$id;`
-        console.log( query)
         return query
     },
     GET_LAST: `SELECT * FROM avaliacao ORDER BY id DESC LIMIT 1;`,
     DELETE_AVALIACAO: `DELETE FROM avaliacao WHERE id = $id`,
-
+    GET_ALL_AVALIACAO_USER: `
+        SELECT avaliacao.* FROM avaliacao
+        INNER JOIN user ON user.id = avaliacao.user_id 
+        WHERE avaliacao.user_id = $user_id 
+        `,
+    GET_LAST_AVALIACAO_USER: `
+        SELECT avaliacao.* FROM avaliacao 
+        INNER JOIN user ON user.id = avaliacao.user_id
+        WHERE avaliacao.user_id = $user_id 
+        ORDER BY avaliacao.id DESC LIMIT 1
+        `,
+    
 }

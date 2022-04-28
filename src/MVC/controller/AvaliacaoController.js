@@ -13,6 +13,29 @@ export const AvaliacaoController = (app,database) => {
             res.json(error)
         }
     })
+    app.get('/avaliacao/user/:id', async (req,res) => { 
+        const userID = req.params.id
+        try {
+            const allData = await avalModel.GetAllAvaliacaoUser(userID)
+            res.status(200)
+            res.json(allData)
+            
+        } catch (error) {
+            res.json(error)
+        }
+    })
+    app.get('/avaliacao/last/:id', async (req,res) => { 
+        const userID = req.params.id
+        try {
+            const allData = await avalModel.GetLastAvaliacaoUser(userID)
+            res.status(200)
+            res.json(allData)
+            
+        } catch (error) {
+            res.json(error)
+        }
+    })
+
     // insert new 
     app.post('/avaliacao', async (req,res) => { 
         try {
@@ -23,6 +46,7 @@ export const AvaliacaoController = (app,database) => {
             res.json(error)
         }
     })
+
     // get by id
     app.get('/avaliacao/:id', async (req,res) => { 
         try {
@@ -34,8 +58,8 @@ export const AvaliacaoController = (app,database) => {
             res.status(401)
             res.json(error)
         }
-
     })
+
     // update
     app.put('/avaliacao/:id', async (req,res) => { 
         try {

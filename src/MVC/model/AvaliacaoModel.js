@@ -20,7 +20,7 @@ export class AvaliacaoModel {
         return await this._SetterHelper(() => aval.UPDATE_AVALIACAO_BY_ID(finalModel), finalModel)
         
     }
-    DeleteAvaliacao(id){
+    DeleteAvaliacao(id) {
         return this._SetterHelper(() => aval.DELETE_AVALIACAO, {$id:id})
     }
 
@@ -35,7 +35,13 @@ export class AvaliacaoModel {
         if(res.data.length > 0 && res.data[0].hasOwnProperty('id')) return this._ResponseDefault([res.data[0]],res.error)
         return this._ResponseDefault([],res.error)
     }
-    
+
+    GetLastAvaliacaoUser (user_id = 0)  {
+        return this._GetterHelper(() => aval.GET_LAST_AVALIACAO_USER, {$user_id: user_id})
+    }
+    GetAllAvaliacaoUser (user_id = 0)  {
+        return this._GetterHelper(() => aval.GET_ALL_AVALIACAO_USER, {$user_id: user_id})
+    }
     _SetterHelper(callbackQuery, data={}) {
         const newData = {...data}
         return new Promise((resolve,reject)=> { 

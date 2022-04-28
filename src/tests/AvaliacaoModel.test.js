@@ -6,10 +6,10 @@ const data = {
     peso           : 80.32, 
     massaMuscular  : 24.0401230,
     taxaGordura    : 18.0556,
-    ombrosE         : 19.9022 ,
-    ombrosD         : 17.92342,
-    tricipalE       : 9.3,
-    tricipalD       : 9.3,
+    ombrosE        : 19.9022 ,
+    ombrosD        : 17.92342,
+    tricipalE      : 9.3,
+    tricipalD      : 9.3,
     peitoral       : 10.23,
     cintura        : 32.8546,
     quadril        : 50.654,
@@ -20,7 +20,8 @@ const data = {
     panturrilhaE   : 63.4325,
     panturrilhaD   : 43.0,
     abdomem        : 23.0,
-    gluteo         : 0.0
+    gluteo         : 0.0,
+    user_id        : 1
 }
 
 const checker = {
@@ -28,11 +29,11 @@ const checker = {
    altura         : 183.32, 
    peso           : 80.32 , 
    massaMuscular  : 24.04 ,
-   ombrosE         : 19.9 ,
-   ombrosD         : 17.92 ,
+   ombrosE        : 19.9 ,
+   ombrosD        : 17.92 ,
    taxaGordura    : 18.06 ,
-   tricipalE       : 9.30  ,
-   tricipalD       : 9.30  ,
+   tricipalE      : 9.30  ,
+   tricipalD      : 9.30  ,
    peitoral       : 10.23 ,
    cintura        : 32.85 ,
    quadril        : 50.65 ,
@@ -43,7 +44,9 @@ const checker = {
    panturrilhaE   : 63.43 ,
    panturrilhaD   : 43.00 ,
    abdomem        : 23.00 ,
-   gluteo         : 0.00
+   gluteo         : 0.00,
+   user_id        : 1
+
 }
 const avaliacao = new AvaliacaoModel(db)
 const avalData = {...data}
@@ -55,7 +58,7 @@ test('Expect to return inserted avaliacao in the database', async () => {
     return expect(expected).toMatchObject(expectedRes)
 })
 
-test('expect to return row with the especified id',async  () => { 
+test('expect to return row with the especified id', async  () => { 
     const expectedRes = avaliacao._ResponseDefault([checker],null)
     return expect(await avaliacao.GetAvaliacao(1)).toMatchObject(expectedRes)
 })
@@ -73,6 +76,19 @@ test('expect to get Updated row ',async () => {
     const result = await avaliacao.UpdateAvaliacao(updater, updater.id)
     return expect(result).toMatchObject(expectedRes)
 })
+
+
+// Get avaliacao related to user 
+test('expect to return All user avaliacao', async () => { 
+    const user  = { 
+        id: 1
+    }
+    const expectRes = await avaliacao.GetAllAvaliacaoUser(user.id)
+    expect(expectRes.data.length).toBeTruthy()
+
+})
+
+
 test('expect to delete the avaliacao with the especified id', async () => { 
     const expectedRes = avaliacao._ResponseDefault([],null)
     return expect(await avaliacao.DeleteAvaliacao(1)).toMatchObject(expectedRes)
