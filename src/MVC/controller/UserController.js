@@ -3,7 +3,7 @@ import { UserModel } from "../model/UserModel";
 export const UserController = (app,database) => {
     const userModel = new UserModel(database)
 
-    app.get('/signUp', async (req,res) => {
+    app.get('/signup', async (req,res) => {
         const userData = req.body
         try {
             const allData = await userModel.RegisterUser(userData)
@@ -15,7 +15,7 @@ export const UserController = (app,database) => {
         }
     })
     
-    app.get('/signIn', async (req,res) => { 
+    app.get('/signin', async (req,res) => { 
         const userData = req.body
         try {
             const allData = await userModel.GetUserByEmailAndPassword(userData)
